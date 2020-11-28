@@ -9,10 +9,16 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
+import android.util.TypedValue
+import android.view.ViewGroup
+import android.view.ViewGroup.LayoutParams.MATCH_PARENT
+import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.app.NotificationCompat
+import androidx.core.view.ViewCompat
 import com.udacity.databinding.ActivityMainBinding
-
 
 class MainActivity : AppCompatActivity() {
 
@@ -24,6 +30,8 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    private var urlToDownload: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -32,9 +40,47 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
 
         registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+        createDownloadOptions()
 
         binding.contentMain.customButton.setOnClickListener {
             download()
+        }
+    }
+
+    private fun createDownloadOptions() {
+        val group = binding.contentMain.radioGroup
+        val optionNames = resources.getStringArray(R.array.download_option_names)
+        val optionUrls = resources.getStringArray(R.array.download_option_urls)
+
+        val downloadOptions = mutableMapOf<Int, String>()
+
+        val buttonMargin = TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                10f,
+                resources.displayMetrics
+        ).toInt()
+
+        optionNames.forEachIndexed { index, text ->
+            val viewParams = ViewGroup.MarginLayoutParams(MATCH_PARENT, WRAP_CONTENT).apply {
+                topMargin = buttonMargin
+                bottomMargin = buttonMargin
+            }
+
+            val buttonId = ViewCompat.generateViewId()
+            val radioButton = AppCompatRadioButton(this)
+
+            radioButton.text = text
+            radioButton.id = buttonId
+            radioButton.layoutParams = viewParams
+
+            downloadOptions[buttonId] = optionUrls[index]
+
+            group.addView(radioButton)
+        }
+
+        group.setOnCheckedChangeListener { _, checkedId ->
+            urlToDownload = downloadOptions[checkedId]
+            Toast.makeText(this, urlToDownload, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -46,7 +92,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun download() {
         val request =
-            DownloadManager.Request(Uri.parse(URL))
+                DownloadManager.Request(Uri.parse(URL))
                 .setTitle(getString(R.string.app_name))
                 .setDescription(getString(R.string.app_description))
                 .setRequiresCharging(false)

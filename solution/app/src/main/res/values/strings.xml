@@ -11,4 +11,16 @@
     <string name="button_name">Click me</string>
     <string name="button_loading">We are loading </string>
     <string name="title_activity_detail">DetailActivity</string>
+
+    <string-array name="download_option_names">
+        <item>Glide - Image Loading Library by BumpTech</item>
+        <item>LoadApp - Current repository by Udacity</item>
+        <item>Retrofit - Type-safe HTTP client for Android and Java by Square, Inc</item>
+    </string-array>
+
+    <string-array name="download_option_urls">
+        <item>https://github.com/bumptech/glide/archive/master.zip</item>
+        <item>https://github.com/sriharshachilakapati/application-loading-status-udacity-nanodegree/archive/master.zip</item>
+        <item>https://github.com/square/retrofit/archive/master.zip</item>
+    </string-array>
 </resources>
