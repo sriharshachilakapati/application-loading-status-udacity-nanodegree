@@ -12,6 +12,7 @@
     <string name="button_loading">We are loading </string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="download_logo">Download Logo</string>
+    <string name="download">Download</string>
 
     <string-array name="download_option_names">
         <item>Glide - Image Loading Library by BumpTech</item>
