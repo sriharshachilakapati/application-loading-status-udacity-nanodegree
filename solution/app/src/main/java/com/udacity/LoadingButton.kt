@@ -2,10 +2,7 @@ package com.udacity
 
 import android.animation.ValueAnimator
 import android.content.Context
-import android.graphics.Canvas
-import android.graphics.Paint
-import android.graphics.Rect
-import android.graphics.Typeface
+import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.animation.doOnEnd
@@ -63,18 +60,26 @@ class LoadingButton @JvmOverloads constructor(
 
     private val textPaint = Paint().apply {
         isAntiAlias = true
-        color = context.getColor(R.color.white)
-        textSize = 16.sp
         textAlign = Paint.Align.CENTER
         typeface = Typeface.DEFAULT_BOLD
     }
 
     private val progressArcPaint = Paint().apply {
         isAntiAlias = true
-        color = context.getColor(R.color.colorSecondary)
     }
 
     private val buttonText get() = context.getString(buttonState.text).toUpperCase(Locale.ROOT)
+
+    init {
+        val typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.LoadingButton, defStyleAttr, 0)
+
+        with(textPaint) {
+            color = typedArray.getColor(R.styleable.LoadingButton_android_textColor, Color.WHITE)
+            textSize = typedArray.getDimensionPixelSize(R.styleable.LoadingButton_android_textSize, 10.sp.toInt()).toFloat()
+        }
+
+        progressArcPaint.color = typedArray.getColor(R.styleable.LoadingButton_progressArcColor, Color.WHITE)
+    }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
