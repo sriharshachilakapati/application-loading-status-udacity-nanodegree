@@ -1,8 +1,8 @@
 package com.udacity
 
+import androidx.annotation.StringRes
 
-sealed class ButtonState {
-    object Clicked : ButtonState()
-    object Loading : ButtonState()
-    object Completed : ButtonState()
+enum class ButtonState(@StringRes val text: Int) {
+    LOADING(R.string.button_loading),
+    DOWNLOAD(R.string.download)
 }

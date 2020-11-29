@@ -44,8 +44,12 @@ class MainActivity : AppCompatActivity() {
         registerReceiver(receiver, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
         createDownloadOptions()
 
-        binding.contentMain.customButton.setOnClickListener {
-            download()
+        with (binding.contentMain.customButton) {
+            buttonState = ButtonState.LOADING
+
+            setOnClickListener {
+                download()
+            }
         }
     }
 
