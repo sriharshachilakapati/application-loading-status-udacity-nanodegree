@@ -48,7 +48,9 @@ class MainActivity : AppCompatActivity() {
             buttonState = ButtonState.LOADING
 
             setOnClickListener {
-                download()
+                if (buttonState == ButtonState.DOWNLOAD) {
+                    download()
+                }
             }
         }
     }
@@ -84,6 +86,7 @@ class MainActivity : AppCompatActivity() {
     private val receiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
             val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1)
+            binding.contentMain.customButton.buttonState = ButtonState.DOWNLOAD
         }
     }
 
@@ -92,6 +95,8 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, getString(R.string.message_no_option_selected), Toast.LENGTH_SHORT).show()
             return
         }
+
+        binding.contentMain.customButton.buttonState = ButtonState.DOWNLOADING
 
         val request = DownloadManager.Request(Uri.parse(urlToDownload))
                 .setTitle(getString(R.string.app_name))

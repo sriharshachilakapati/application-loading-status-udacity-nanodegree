@@ -30,6 +30,7 @@ class LoadingButton @JvmOverloads constructor(
                     animator = null
                 }
 
+                ButtonState.DOWNLOADING,
                 ButtonState.LOADING ->
                     animator = ValueAnimator.ofFloat(0f, 1f).apply {
                         addUpdateListener {
@@ -37,7 +38,12 @@ class LoadingButton @JvmOverloads constructor(
                             invalidate()
                         }
 
-                        doOnEnd { buttonState = ButtonState.DOWNLOAD }
+                        if (value == ButtonState.LOADING) {
+                            doOnEnd { buttonState = ButtonState.DOWNLOAD }
+                        } else {
+                            repeatMode = ValueAnimator.REVERSE
+                            repeatCount = ValueAnimator.INFINITE
+                        }
 
                         duration = 3000
                         start()
@@ -91,7 +97,7 @@ class LoadingButton @JvmOverloads constructor(
         textPaint.getTextBounds(buttonText, 0, buttonText.length, textRect)
         canvas.drawRoundRect(0f, 0f, backgroundWidth, backgroundHeight, cornerRadius, cornerRadius, backgroundPaint)
 
-        if (buttonState == ButtonState.LOADING) {
+        if (buttonState != ButtonState.DOWNLOAD) {
             var progressVal = progress * backgroundWidth
             canvas.drawRoundRect(0f, 0f, progressVal, backgroundHeight, cornerRadius, cornerRadius, backgroundProgressPaint)
 
