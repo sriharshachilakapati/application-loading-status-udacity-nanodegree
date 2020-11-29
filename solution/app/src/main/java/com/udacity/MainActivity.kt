@@ -29,7 +29,10 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
-    private var urlToDownload: String? = null
+    private val downloadOptions = mutableMapOf<Int, String>()
+
+    private val urlToDownload: String?
+        get() = downloadOptions[binding.contentMain.radioGroup.checkedRadioButtonId]
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,8 +54,6 @@ class MainActivity : AppCompatActivity() {
         val optionNames = resources.getStringArray(R.array.download_option_names)
         val optionUrls = resources.getStringArray(R.array.download_option_urls)
 
-        val downloadOptions = mutableMapOf<Int, String>()
-
         optionNames.forEachIndexed { index, text ->
             val viewParams = ViewGroup.MarginLayoutParams(MATCH_PARENT, WRAP_CONTENT).apply {
                 topMargin = 10.dp.toInt()
@@ -71,8 +72,7 @@ class MainActivity : AppCompatActivity() {
             group.addView(radioButton)
         }
 
-        group.setOnCheckedChangeListener { _, checkedId ->
-            urlToDownload = downloadOptions[checkedId]
+        group.setOnCheckedChangeListener { _, _ ->
             Toast.makeText(this, urlToDownload, Toast.LENGTH_SHORT).show()
         }
     }
@@ -84,8 +84,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun download() {
-        val request =
-                DownloadManager.Request(Uri.parse(URL))
+        if (urlToDownload == null) {
+            Toast.makeText(this, getString(R.string.message_no_option_selected), Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val request = DownloadManager.Request(Uri.parse(urlToDownload))
                 .setTitle(getString(R.string.app_name))
                 .setDescription(getString(R.string.app_description))
                 .setRequiresCharging(false)
@@ -93,14 +97,6 @@ class MainActivity : AppCompatActivity() {
                 .setAllowedOverRoaming(true)
 
         val downloadManager = getSystemService(DOWNLOAD_SERVICE) as DownloadManager
-        downloadID =
-            downloadManager.enqueue(request)// enqueue puts the download request in the queue.
+        downloadID = downloadManager.enqueue(request)
     }
-
-    companion object {
-        private const val URL =
-            "https://github.com/udacity/nd940-c3-advanced-android-programming-project-starter/archive/master.zip"
-        private const val CHANNEL_ID = "channelId"
-    }
-
 }
