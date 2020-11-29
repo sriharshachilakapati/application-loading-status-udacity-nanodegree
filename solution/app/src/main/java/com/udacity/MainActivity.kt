@@ -9,7 +9,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
-import android.util.TypedValue
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
@@ -54,16 +53,10 @@ class MainActivity : AppCompatActivity() {
 
         val downloadOptions = mutableMapOf<Int, String>()
 
-        val buttonMargin = TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP,
-                10f,
-                resources.displayMetrics
-        ).toInt()
-
         optionNames.forEachIndexed { index, text ->
             val viewParams = ViewGroup.MarginLayoutParams(MATCH_PARENT, WRAP_CONTENT).apply {
-                topMargin = buttonMargin
-                bottomMargin = buttonMargin
+                topMargin = 10.dp.toInt()
+                bottomMargin = 10.dp.toInt()
             }
 
             val buttonId = ViewCompat.generateViewId()
