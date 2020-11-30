@@ -15,6 +15,10 @@
     <string name="download">Download</string>
     <string name="message_no_option_selected">Select an option to download</string>
     <string name="downloading">Downloading</string>
+    <string name="download_failed">Downloading %s failed</string>
+    <string name="download_success">%s downloaded successfully</string>
+    <string name="download_notification_title">Download status update</string>
+    <string name="action_show_details">Show Details</string>
 
     <string-array name="download_option_names">
         <item>Glide - Image Loading Library by BumpTech</item>
