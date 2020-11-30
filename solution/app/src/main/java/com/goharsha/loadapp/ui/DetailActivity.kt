@@ -1,4 +1,4 @@
-package com.goharsha.loadapp
+package com.goharsha.loadapp.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

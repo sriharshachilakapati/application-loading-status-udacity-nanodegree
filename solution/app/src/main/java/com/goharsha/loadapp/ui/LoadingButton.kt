@@ -1,4 +1,4 @@
-package com.goharsha.loadapp
+package com.goharsha.loadapp.ui
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -6,6 +6,9 @@ import android.graphics.*
 import android.util.AttributeSet
 import android.view.View
 import androidx.core.animation.doOnEnd
+import com.goharsha.loadapp.R
+import com.goharsha.loadapp.dp
+import com.goharsha.loadapp.sp
 import java.util.*
 
 class LoadingButton @JvmOverloads constructor(
@@ -77,7 +80,8 @@ class LoadingButton @JvmOverloads constructor(
     private val buttonText get() = context.getString(buttonState.text).toUpperCase(Locale.ROOT)
 
     init {
-        val typedArray = context.theme.obtainStyledAttributes(attrs, R.styleable.LoadingButton, defStyleAttr, 0)
+        val typedArray = context.theme.obtainStyledAttributes(attrs,
+            R.styleable.LoadingButton, defStyleAttr, 0)
 
         with(textPaint) {
             color = typedArray.getColor(R.styleable.LoadingButton_android_textColor, Color.WHITE)

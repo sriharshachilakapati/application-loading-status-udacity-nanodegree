@@ -1,4 +1,4 @@
-package com.goharsha.loadapp
+package com.goharsha.loadapp.ui
 
 import android.app.DownloadManager
 import android.app.PendingIntent
@@ -17,7 +17,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.os.bundleOf
 import androidx.core.view.ViewCompat
+import com.goharsha.loadapp.R
 import com.goharsha.loadapp.databinding.ActivityMainBinding
+import com.goharsha.loadapp.dp
+import com.goharsha.loadapp.showNotification
 
 class MainActivity : AppCompatActivity() {
 
