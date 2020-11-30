@@ -1,4 +1,4 @@
-package com.udacity
+package com.goharsha.loadapp
 
 import androidx.annotation.StringRes
 

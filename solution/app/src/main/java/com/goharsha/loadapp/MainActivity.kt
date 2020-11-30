@@ -1,4 +1,4 @@
-package com.udacity
+package com.goharsha.loadapp
 
 import android.app.DownloadManager
 import android.app.NotificationManager
@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.app.NotificationCompat
 import androidx.core.view.ViewCompat
-import com.udacity.databinding.ActivityMainBinding
+import com.goharsha.loadapp.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
