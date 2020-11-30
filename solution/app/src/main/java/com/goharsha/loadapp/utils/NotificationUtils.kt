@@ -1,4 +1,4 @@
-package com.goharsha.loadapp
+package com.goharsha.loadapp.utils
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -9,6 +9,8 @@ import android.os.Build
 import androidx.annotation.IdRes
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
+import com.goharsha.loadapp.LoadApp
+import com.goharsha.loadapp.R
 
 @RequiresApi(Build.VERSION_CODES.O)
 internal fun LoadApp.createNotificationChannels() {
@@ -49,4 +51,9 @@ fun Context.showNotification(
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         notificationManager.notify(notificationId, build())
     }
+}
+
+fun Context.cancelNotification(notificationId: Int) {
+    val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+    notificationManager.cancel(notificationId)
 }

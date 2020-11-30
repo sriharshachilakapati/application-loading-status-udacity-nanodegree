@@ -7,8 +7,8 @@ import android.util.AttributeSet
 import android.view.View
 import androidx.core.animation.doOnEnd
 import com.goharsha.loadapp.R
-import com.goharsha.loadapp.dp
-import com.goharsha.loadapp.sp
+import com.goharsha.loadapp.utils.dp
+import com.goharsha.loadapp.utils.sp
 import java.util.*
 
 class LoadingButton @JvmOverloads constructor(

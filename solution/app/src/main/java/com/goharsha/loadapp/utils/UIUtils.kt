@@ -1,4 +1,4 @@
-package com.goharsha.loadapp
+package com.goharsha.loadapp.utils
 
 import android.content.res.Resources
 import android.util.TypedValue
