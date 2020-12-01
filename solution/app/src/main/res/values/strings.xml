@@ -19,6 +19,12 @@
     <string name="download_success">%s downloaded successfully</string>
     <string name="download_notification_title">Download status update</string>
     <string name="action_show_details">Show Details</string>
+    <string name="download_details">Download Details</string>
+    <string name="download_succeeded">Download succeeded</string>
+    <string name="download_failed_simple">Download failed</string>
+    <string name="download_title">Download Title</string>
+    <string name="download_id">Download ID</string>
+    <string name="close">Close</string>
 
     <string-array name="download_option_names">
         <item>Glide - Image Loading Library by BumpTech</item>

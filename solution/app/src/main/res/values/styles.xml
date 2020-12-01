@@ -21,4 +21,12 @@
         <item name="android:lineSpacingExtra">8dp</item>
     </style>
 
+    <style name="AppTheme.MaterialCard" parent="Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/AppTheme.MaterialCard.Cut</item>
+    </style>
+
+    <style name="AppTheme.MaterialCard.Cut">
+        <item name="cornerFamily">cut</item>
+    </style>
+
 </resources>
